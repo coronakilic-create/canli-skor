@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +12,6 @@
   <script type="module" crossorigin src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-
 <body>
   <nav class="header navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
@@ -31,22 +29,58 @@
       </div>
     </div>
   </nav>
-
   <div class="content p-3">
     <div class="row">
-<api-sports-widget data-type="games"></api-sports-widget>
-    </div>
+
+      <div class="col-3">
+        <div id="leagues-list" class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <api-sports-widget data-type="leagues"></api-sports-widget>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-5">
+        <div id="games-list" class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <div id="games-list">
+              <api-sports-widget data-type="games"></api-sports-widget>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+
+        <!-- Start Dynamic Targeting containers -->
+        <div class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <div id="standings-content"></div>
+          </div>
+        </div>
+        <div class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <div id="team-content"></div>
+          </div>
+        </div>
+        <!-- End Dynamic Targeting containers -->
+
+        <div id="game-content" class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <api-sports-widget data-type="game" data-game-id="977705"></api-sports-widget>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <!-- Config widget -->
   <api-sports-widget 
     data-type="config" 
     data-sport="football" 
-    data-key="74c853a12f8e7f58a7d7cea151dde868"
+    data-key="Your-Api-Key-here"
     data-lang="en" 
     data-theme="grey" 
-    data-show-error="false" 
+    data-show-error="true" 
     data-show-logos="true"
     data-refresh="20" 
     data-favorite="true" 
