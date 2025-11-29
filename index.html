@@ -1,11 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Canlı Skor</title>
+    <title>Süper Lig Puan Durumu</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f8f8f8; }
+        table { border-collapse: collapse; width: 70%; background: #fff; }
+        th, td { border: 1px solid #333; padding: 10px; text-align: left; }
+        th { background: #ddd; }
+    </style>
 </head>
 <body>
-    <h1>Canlı Skor Sitesi</h1>
-    <p>Site başarıyla çalışıyor!</p>
+
+<h1>Süper Lig 2024-25 Puan Durumu</h1>
+
+<table id="puanTablosu">
+    <tr>
+        <th>Sıra</th>
+        <th>Takım</th>
+        <th>O</th>
+        <th>G</th>
+        <th>B</th>
+        <th>M</th>
+        <th>Puan</th>
+    </tr>
+</table>
+
+<script>
+async function yukle() {
+    const url = "https://raw.githubusercontent.com/openfootball/football.json/master/2024-25/tr.1.json";
+    const res = await fetch(url);
+    const data = await res.json();
+
+    let takimlar = {};
+
+    data.matches.forEach(mac => {
+        let home = mac.team1;
+        let away = mac.team2;
+        let gHome = mac.score1;
+        let gAway = mac.score2;
+
+        if (!takimlar[home]) takimlar[home] = { O:0, G:0, B:0, M:0, P:0 };
+        if (!takimlar[away]) takimlar[away] = { O:0, G:0, B:0, M:0, P:0 };
+
+        if (gHome == null || gAway == null) return; // Oynanmamış maç
+
+        takimlar[home].O++;
+        takimlar[away].O++;
+
+        if (gHome > gAway) {
+            takimlar[home].G++;
+            takimlar[away].M++;
+            takimlar[home].P += 3;
+        } else if (gHome < gAway) {
+            takimlar[away].G++;
+            takimlar[home].M++;
+            takimlar[away].P += 3;
+        } else {
+            takimlar[home].B++;
+            takimlar[away].B++;
+            takimlar[home].P++;
+            takimlar[away].P++;
+        }
+    });
+
+    let siralama = Object.entries(takimlar)
+        .sort((a,b) => b[1].P - a[1].P);
+
+    const tablo = document.getElementById("puanTablosu");
+
+    siralama.forEach(([takim, stats], index) => {
+        tablo.innerHTML += `
+            <tr>
+                <td>${index+1}</td>
+                <td>${takim}</td>
+                <td>${stats.O}</td>
+                <td>${stats.G}</td>
+                <td>${stats.B}</td>
+                <td>${stats.M}</td>
+                <td>${stats.P}</td>
+            </tr>
+        `;
+    });
+}
+
+yukle();
+</script>
+
 </body>
 </html>
