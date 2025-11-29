@@ -1,111 +1,103 @@
 <!DOCTYPE html>
-<html lang="tr" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Süper Lig Maçkoliği</title>
-
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- API-Sports Widgets -->
-  <script src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
-
-  <!-- Basit stil -->
-  <style>
-    body { background-color: #121212; color: #eaeaea; }
-    .navbar { border-bottom: 1px solid #2a2a2a; }
-    .card { background-color: #1b1b1b; border: 1px solid #2a2a2a; }
-    .card-header { background-color: #222; border-bottom: 1px solid #2a2a2a; }
-    .footer { font-size: .9rem; color: #bbb; }
-    .widget-box { min-height: 320px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Awesome Website</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous" />
+  <script type="module" crossorigin src="https://widgets.api-sports.io/3.1.0/widgets.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-  <!-- Üst menü -->
-  <nav class="navbar navbar-dark bg-dark sticky-top">
+  <nav class="header navbar navbar-expand-lg bg-body-tertiary sticky-top">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">⚽ Süper Lig Maçkoliği</span>
-      <span class="text-muted small">Canlı skor • Puan durumu • Fikstür • Gol krallığı</span>
+      <a class="navbar-brand" href="/">TUTORIAL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Home</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
+  <div class="content p-3">
+    <div class="row">
 
-  <div class="container my-3">
-    <div class="row g-3">
-      <!-- Sol: Puan Durumu -->
-      <div class="col-lg-3">
-        <div class="card">
-          <div class="card-header">Puan Durumu (Süper Lig)</div>
-          <div class="card-body p-0 widget-box">
-            <api-sports-widget data-type="standings" data-league="203"></api-sports-widget>
+      <div class="col-3">
+        <div id="leagues-list" class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <api-sports-widget data-type="leagues"></api-sports-widget>
           </div>
         </div>
       </div>
 
-      <!-- Orta: Canlı Maçlar + Fikstür -->
-      <div class="col-lg-6">
-        <div class="card mb-3">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <span>Canlı Maçlar</span>
-            <small class="text-muted">Otomatik yenileme açık</small>
-          </div>
-          <div class="card-body p-0 widget-box">
-            <api-sports-widget data-type="games" data-league="203"></api-sports-widget>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-header">Fikstür (Bu Hafta)</div>
-          <div class="card-body p-0 widget-box">
-            <api-sports-widget data-type="fixtures" data-league="203"></api-sports-widget>
+      <div class="col-5">
+        <div id="games-list" class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <div id="games-list">
+              <api-sports-widget data-type="games"></api-sports-widget>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Sağ: Takım Detayları + Gol Krallığı -->
-      <div class="col-lg-3">
-        <div class="card mb-3">
-          <div class="card-header">Takım Detayları</div>
-          <div class="card-body p-0 widget-box" id="team-content"></div>
-        </div>
+      <div class="col-4">
 
-        <div class="card">
-          <div class="card-header">Gol Krallığı</div>
-          <div class="card-body p-0 widget-box">
-            <api-sports-widget data-type="topscorers" data-league="203"></api-sports-widget>
+        <!-- Start Dynamic Targeting containers -->
+        <div class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <div id="standings-content"></div>
+          </div>
+        </div>
+        <div class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <div id="team-content"></div>
+          </div>
+        </div>
+        <!-- End Dynamic Targeting containers -->
+
+        <div id="game-content" class="card text-bg-dark border-dark">
+          <div class="card-body p-0">
+            <api-sports-widget data-type="game" data-game-id="977705"></api-sports-widget>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Maç detayları (tıklanan maç) -->
-    <div class="row g-3 mt-3">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">Maç Detayları</div>
-          <div class="card-body p-0" id="game-content"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center mt-4 footer">
-      <p>Veri kaynağı: API-Football (API-Sports). Süper Lig ID: 203.</p>
     </div>
   </div>
-
-  <!-- Widget yapılandırması: API anahtarını ekleyin -->
-  <api-sports-widget
-    data-type="config"
-    data-sport="football"
+  
+  <api-sports-widget 
+    data-type="config" 
+    data-sport="football" 
     data-key="fd460753169e3453d0241cc953845142"
-    data-lang="tr"
-    data-theme="dark"
-    data-show-error="true"
+    data-lang="en" 
+    data-theme="grey" 
+    data-show-error="true" 
     data-show-logos="true"
-    data-refresh="20"
-    data-target-team="#team-content"
-    data-target-game="#game-content">
-  </api-sports-widget>
+    data-refresh="20" 
+    data-favorite="true" 
+    data-player-trophies="true" 
+    data-standings="true"
+    data-player-injuries="true"
+    data-team-squad="true" 
+    data-team-statistics="true" 
+    data-player-statistics="true"
+    data-tab="games"
+    data-game-tab="statistics"
+    data-target-player="modal" 
+    data-target-league="#games-list" 
+    data-target-team="#team-content" 
+    data-target-game="#game-content .card-body" 
+    data-target-standings="#standings-content"
+  ></api-sports-widget>
 </body>
 </html>
