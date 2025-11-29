@@ -1,69 +1,31 @@
-/* Genel ayarlar */
 body {
-  background-color: #121212;
-  color: #eaeaea;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
+  margin:0;
 }
 
-/* Navbar */
-.navbar {
-  border-bottom: 1px solid #2a2a2a;
-}
-.navbar-brand {
-  font-weight: bold;
-  color: #f5f5f5 !important;
-}
-.navbar .text-muted {
-  font-size: 0.9rem;
+.container-fluid,
+.content {
+  max-width: 1440px;
+  margin: auto;
 }
 
-/* Kartlar */
-.card {
-  background-color: #1b1b1b;
-  border: 1px solid #2a2a2a;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.card-header {
-  background-color: #222;
-  border-bottom: 1px solid #2a2a2a;
-  font-weight: 600;
-  color: #f5f5f5;
-}
-.card-body {
-  padding: 0.5rem;
+#game-content {
+    position: sticky;
+    top: 70px;
+    overflow-y: auto;
 }
 
-/* Widget kutuları */
-.widget-box {
-  min-height: 300px;
-  padding: 0.5rem;
+#game-content api-sports-widget {
+    max-height: calc(100vh - 100px);
 }
 
-/* Footer */
-.footer {
-  font-size: 0.85rem;
-  color: #bbb;
-  text-align: center;
-  margin-top: 2rem;
-  padding: 1rem 0;
-  border-top: 1px solid #2a2a2a;
+#standings-content api-sports-widget,
+#team-content api-sports-widget {
+    margin-bottom: 1rem;
+    max-height: 55vh;
 }
 
-/* Hover efektleri */
-.card:hover {
-  border-color: #444;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-/* Responsive düzen */
-@media (max-width: 768px) {
-  .widget-box {
-    min-height: 200px;
-  }
-  .navbar .text-muted {
-    display: none;
-  }
+#leagues-list {
+    position: sticky;
+    top: 70px;
+    overflow-y: auto;
 }
