@@ -1,69 +1,57 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Süper Lig 2024-25 Puan Durumu</title>
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f8f8f8; }
-        table { border-collapse: collapse; width: 70%; background: #fff; }
-        th, td { border: 1px solid #333; padding: 10px; text-align: left; }
-        th { background: #ddd; }
-    </style>
+  <meta charset="UTF-8">
+  <title>Süper Lig 2025‑26 Puan Durumu</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+    table { border-collapse: collapse; width: 80%; margin: auto; background: #fff; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+    th { background: #ddd; }
+    h1 { text-align: center; }
+  </style>
 </head>
 <body>
-
-<h1>Süper Lig 2024-25 Puan Durumu</h1>
-
-<table id="puanTablosu">
+  <h1>Süper Lig 2025‑26 (Güncel)</h1>
+  <table id="puanTablo">
     <tr>
-        <th>Sıra</th>
-        <th>Takım</th>
-        <th>O</th>
-        <th>G</th>
-        <th>B</th>
-        <th>M</th>
-        <th>Puan</th>
+      <th>#</th><th>Takım</th><th>O</th><th>G</th><th>B</th><th>M</th><th>Puan</th>
     </tr>
-</table>
-
+  </table>
 <script>
-const takimlar = [
-    { name: "Galatasaray", O: 10, G: 7, B: 2, M: 1, P: 23 },
-    { name: "Fenerbahçe", O: 10, G: 6, B: 3, M: 1, P: 21 },
-    { name: "Beşiktaş", O: 10, G: 6, B: 2, M: 2, P: 20 },
-    { name: "Trabzonspor", O: 10, G: 5, B: 3, M: 2, P: 18 },
-    { name: "Başakşehir", O: 10, G: 5, B: 2, M: 3, P: 17 },
-    { name: "Alanyaspor", O: 10, G: 4, B: 3, M: 3, P: 15 },
-    { name: "Antalyaspor", O: 10, G: 4, B: 2, M: 4, P: 14 },
-    { name: "Kasımpaşa", O: 10, G: 3, B: 4, M: 3, P: 13 },
-    { name: "Sivasspor", O: 10, G: 3, B: 3, M: 4, P: 12 },
-    { name: "Gaziantep FK", O: 10, G: 2, B: 5, M: 3, P: 11 },
-    { name: "Giresunspor", O: 10, G: 2, B: 4, M: 4, P: 10 },
-    { name: "Çaykur Rizespor", O: 10, G: 2, B: 3, M: 5, P: 9 },
-    { name: "Kayserispor", O: 10, G: 2, B: 2, M: 6, P: 8 },
-    { name: "Adana Demirspor", O: 10, G: 1, B: 4, M: 5, P: 7 },
-    { name: "Hatayspor", O: 10, G: 1, B: 3, M: 6, P: 6 },
-    { name: "Yeni Malatyaspor", O: 10, G: 0, B: 4, M: 6, P: 4 },
-    { name: "Ankaragücü", O: 10, G: 0, B: 3, M: 7, P: 3 },
-    { name: "Altay", O: 10, G: 0, B: 2, M: 8, P: 2 },
-];
+  const takimlar = [
+    { rank: 1, name: "Galatasaray", O: 13, G: 10, B: 2, M: 1, P: 32 },
+    { rank: 2, name: "Fenerbahçe", O: 13, G: 9, B: 4, M: 0, P: 31 },
+    { rank: 3, name: "Trabzonspor", O: 13, G: 8, B: 4, M: 1, P: 28 },
+    { rank: 4, name: "Samsunspor", O: 13, G: 6, B: 6, M: 1, P: 24 },
+    { rank: 5, name: "Göztepe", O: 13, G: 6, B: 5, M: 2, P: 23 },
+    { rank: 6, name: "Gaziantep FK", O: 13, G: 6, B: 4, M: 3, P: 22 },
+    { rank: 7, name: "Beşiktaş", O: 13, G: 6, B: 3, M: 4, P: 21 },
+    { rank: 8, name: "Alanyaspor", O: 13, G: 3, B: 6, M: 4, P: 15 },
+    { rank: 9, name: "Konyaspor", O: 13, G: 4, B: 3, M: 6, P: 15 },
+    { rank: 10, name: "Kocaelispor", O: 13, G: 4, B: 3, M: 6, P: 15 },
+    { rank: 11, name: "Çaykur Rizespor", O: 13, G: 3, B: 5, M: 5, P: 14 },
+    { rank: 12, name: "Antalyaspor", O: 13, G: 4, B: 2, M: 7, P: 14 },
+    { rank: 13, name: "Başakşehir", O: 13, G: 3, B: 4, M: 6, P: 13 },
+    { rank: 14, name: "Kasımpaşa", O: 13, G: 3, B: 4, M: 6, P: 13 },
+    { rank: 15, name: "Gençlerbirliği", O: 13, G: 3, B: 2, M: 8, P: 11 }
+    // Eğer ligde daha fazla takım varsa, buraya ekle
+  ];
 
-const tablo = document.getElementById("puanTablosu");
-
-takimlar.forEach((takim, index) => {
+  const tablo = document.getElementById("puanTablo");
+  takimlar.forEach(t => {
     tablo.innerHTML += `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${takim.name}</td>
-            <td>${takim.O}</td>
-            <td>${takim.G}</td>
-            <td>${takim.B}</td>
-            <td>${takim.M}</td>
-            <td>${takim.P}</td>
-        </tr>
+      <tr>
+        <td>${t.rank}</td>
+        <td>${t.name}</td>
+        <td>${t.O}</td>
+        <td>${t.G}</td>
+        <td>${t.B}</td>
+        <td>${t.M}</td>
+        <td>${t.P}</td>
+      </tr>
     `;
-});
+  });
 </script>
-
 </body>
 </html>
